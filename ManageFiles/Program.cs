@@ -13,9 +13,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<ServiceBusOptions>(builder.Configuration.GetSection("AzureServiceBus"));
 builder.Services.Configure<AzureBlobOptions>(builder.Configuration.GetSection("AzureBStorage"));
-builder.Services.AddHostedService<ServiceBusListener>();
 builder.Services.AddTransient<IFilesRepository, AzureBlobStorageRepository>();
 builder.Services.AddTransient<IEventManage, AzureEventGridClient>();
+builder.Services.AddHostedService<ServiceBusListener>();
 
 var app = builder.Build();
 

@@ -35,11 +35,12 @@ namespace ManageFiles.Listeners
         private async Task ProcessMessagesAsync(ProcessMessageEventArgs args)
         {
             var messageBody = args.Message.Body.ToString();
-            _logger.LogInformation($"Received message: {messageBody}");
 
             var message = JsonSerializer.Deserialize<MessageModel>(messageBody) ?? throw new Exception(messageBody);
 
-            if(message.TypeMessage.Equals("Upload"))
+            _logger.LogInformation($"Received message: WorkItemId: {message.WorkItemId}. File: {message.Files[0].Name}.");
+
+            if (message.TypeMessage.Equals("Upload"))
             {
                 _filesRepository.UploadFiles(message.TicketId, message.Files);
 
