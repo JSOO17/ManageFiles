@@ -1,22 +1,21 @@
 ﻿using Azure;
 using Azure.Messaging.EventGrid;
+using ManageFiles.Config;
 using ManageFiles.Interfaces;
 using ManageFiles.Models;
+using Microsoft.Extensions.Options;
 
 namespace ManageFiles.Repositories
 {
     public class AzureEventGridClient : IEventManage
     {
-        private const string TopicEndpoint = "https://uploadazuredevops.eastus-1.eventgrid.azure.net/api/events";
-        private const string TopicKey = "bz6FYYaDwNryTE1xXYGqsnICfv2l0heEgAZEGKYOtD4=";
-
         private EventGridPublisherClient _client;
         private readonly ILogger<AzureEventGridClient> _logger;
 
-        public AzureEventGridClient(ILogger<AzureEventGridClient> logger)
+        public AzureEventGridClient(IOptions<EventGridOptions> options, ILogger<AzureEventGridClient> logger)
         {
-            var credentials = new AzureKeyCredential(TopicKey);
-            _client = new EventGridPublisherClient(new Uri(TopicEndpoint), credentials);
+            var credentials = new AzureKeyCredential(options.Value.TopicKey);
+            _client = new EventGridPublisherClient(new Uri(options.Value.TopicEndpoint), credentials);
 
             _logger = logger;
         }

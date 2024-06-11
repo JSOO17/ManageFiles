@@ -2,6 +2,7 @@ using ManageFiles.Config;
 using ManageFiles.Interfaces;
 using ManageFiles.Listeners;
 using ManageFiles.Repositories;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<ServiceBusOptions>(builder.Configuration.GetSection("AzureServiceBus"));
 builder.Services.Configure<AzureBlobOptions>(builder.Configuration.GetSection("AzureBStorage"));
+builder.Services.Configure<EventGridOptions>(builder.Configuration.GetSection("EventGrid"));
 builder.Services.AddTransient<IFilesRepository, AzureBlobStorageRepository>();
 builder.Services.AddTransient<IEventManage, AzureEventGridClient>();
 builder.Services.AddHostedService<ServiceBusListener>();
