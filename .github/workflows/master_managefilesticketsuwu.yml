@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - managefilesuwu
+name: Build and deploy ASP.Net Core app to Azure Web App - managefilesticketsuwu
 
 on:
   push:
@@ -52,15 +52,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_558867D1C0D34A1586AFAD2401E5FB9F }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_16B47A169D184968BD3A3C7C23AF2572 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_67FE5A13AA9440DD98906BAC442B5C66 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_334DF6A9048F43D191FFD1918D2B6C8C }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_74C141BBD37E4B00A23832A08466E1E9 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F59DD90A9B684971B303220665473844 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'managefilesuwu'
+          app-name: 'managefilesticketsuwu'
           slot-name: 'Production'
           package: .
           
