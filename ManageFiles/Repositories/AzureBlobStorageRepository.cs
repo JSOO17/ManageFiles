@@ -44,7 +44,7 @@ namespace ManageFiles.Repositories
                 {
                     if (file.Content == null || file.Name == null) throw new Exception();
                     var contentBytes = Convert.FromBase64String(file.Content);
-                    _logger.LogInformation($"Uploading file {contentBytes}");
+                    _logger.LogInformation($"Uploading file {file.Name}");
                     await UploadFileAsync(file.Name, contentBytes, ticketId);
                 }
                 catch (Exception ex)
